@@ -14,7 +14,12 @@ class Sockets{
             socket.on('request-ticket',(data,callback)=>{
                 const newTicket = this.ticketList.createTicket();                
                 callback(newTicket);
-            })
+            });
+
+            socket.on('next-dispatch',({agent, desktop},callback)=>{
+                const ticketAsigned = this.ticketList.asignTicket(agent, desktop);                
+                callback(ticketAsigned);                
+            });
 
          });
     }
