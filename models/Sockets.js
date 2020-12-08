@@ -1,18 +1,20 @@
+const TicketList = require('./TicketList');
 class Sockets{
     constructor(io){
-        this.io=io;
+        this.io=io;    
+        this.ticketList =  new TicketList();
         this.socketEvents();
     }
 
     socketEvents(){
         // On Connection Where 'socket' is the client connected
-        this.io.on('connection', (socket) => {                 
-            // Events on 'msg-to-server'
-            socket.on('msg-to-server',(mess)=>{
-                console.log(mess);
-                // If we change io by socket we emit data for all and socket is just for the instance
-                this.io.emit('msg-server',mess);
-            });
+        this.io.on('connection', (socket) => {  
+            console.log('client logged');               
+            // Events on
+            socket.on('request-ticket',(data,callback)=>{
+                const newTicket = this.ticketList.createTicket();                
+                callback(newTicket);
+            })
 
          });
     }

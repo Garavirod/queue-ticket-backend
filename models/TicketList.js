@@ -17,7 +17,7 @@ class TicketList {
     }
 
     createTicket(){
-        const newTicket =  new Ticket( this.nextNumber() );
+        const newTicket =  new Ticket( this.nextNumber );
         this.queue.push(newTicket);
         return newTicket;
     }

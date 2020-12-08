@@ -1,4 +1,4 @@
-const {v4:uuidv4} = 'uuid';
+const {v4:uuidv4} = require('uuid');
 
 class Ticket {
     constructor ( number ) {
